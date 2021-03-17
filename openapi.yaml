@@ -1,0 +1,95 @@
+openapi: 3.0.2
+info:
+    title: Books
+    version: 1.0.0
+    description: A brand new API with no content.  Go nuts!
+paths:
+    /list:
+        get:
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/Book'
+                            examples:
+                                Book list:
+                                    value:
+                                        -
+                                            title: A title
+                                            author: An Author
+                                            isbn: code
+                                        -
+                                            title: A title
+                                            author: An Author
+                                            isbn: code
+                    description: working
+            operationId: list
+    /:
+        get:
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Status'
+                            examples:
+                                status:
+                                    value:
+                                        status: UP
+            operationId: root
+    '/book/{isbn}':
+        get:
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Book'
+                            examples:
+                                Sample book response:
+                                    value:
+                                        title: some text
+                                        author: some text
+                                        isbn: some text
+                    description: working
+            operationId: book
+        parameters:
+            -
+                name: isbn
+                schema:
+                    type: string
+                in: path
+                required: true
+components:
+    schemas:
+        Book:
+            description: Book data type
+            type: object
+            properties:
+                title:
+                    description: ''
+                    type: string
+                author:
+                    description: ''
+                    type: string
+                isbn:
+                    description: ''
+                    type: string
+            example:
+                title: The big Book
+                author: Jhon White
+                isbn: 1235-abc-efg-hjk1
+        Status:
+            description: ''
+            required:
+                - status
+            type: object
+            properties:
+                status:
+                    description: ''
+                    type: string
+            example:
+                status: some text
