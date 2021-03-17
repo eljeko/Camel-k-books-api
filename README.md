@@ -9,5 +9,7 @@ URL=$(oc get routes.serving.knative.dev booksapi -o jsonpath='{.status.url}')
 echo $URL
 
 curl -i $URL/
+
 curl -i $URL/book
+
 curl -i $URL/list
